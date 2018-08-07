@@ -18,7 +18,7 @@ from sklearn.model_selection import train_test_split
 tf.logging.set_verbosity(tf.logging.INFO)
 
 #NETWORK PARAMETERS
-epochs = 1
+epochs = 10
 learning_Rate = 0.01
 batch_Size = 156
 batch_Size2 = batch_Size / 2
@@ -145,7 +145,7 @@ def conv2d(x, W, b, strides = 1):
     return tf.nn.relu(x)
 
 #Define Max-Pooling Operation
-def maxpool2d(x, k = 2):
+def maxpool2d(x, k):
     return tf.nn.max_pool(x, ksize = [1, k, k, 1], strides = [1, k, k , 1], padding = "SAME")
 
 #Weights
@@ -168,10 +168,11 @@ biases = {
 
 #Network Architecture
 def conv_net(x, weights, biases):
+
+    #Convolutional Layers
     conv1 = conv2d(x, weights['wc1'], biases['bc1'])
     conv1 = maxpool2d(conv1, k = 5)
 
-    #Convolutional Layer
     conv2 = conv2d(conv1, weights['wc2'], biases['bc2'])
     conv2 = maxpool2d(conv2, k = 4)
 
@@ -238,16 +239,18 @@ with tf.Session() as sess:
         print("Testing Accuracy: ", "{:.5f}".format(test_acc))
         learning_Rate = learning_Rate * 0.85
 
-        a = 1
-        while a == 1:
-            another = input("Would you like to run another epoch? (yes/no) ")
-            if another == "yes":
-                a = 0
-                epochs += 1
-                i =+ 1
-            elif another == "no":
-                a = 0
-            else:
-                print("Please answer 'yes' or 'no'.")
+        #a = 1
+        #while a == 1:
+        #    another = input("Would you like to run another epoch? (yes/no) ")
+        #    if another == "yes":
+        #        a = 0
+        #        epochs += 1
+        #        i =+ 1
+        #    elif another == "no":
+        #        a = 0
+        #    else:
+        #        print("Please answer 'yes' or 'no'.")
+
+        i =+ 1
 
     summary_writer.close()
