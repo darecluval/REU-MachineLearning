@@ -1,6 +1,6 @@
-#Machine Learning - Viola D - D Major
-#Clare DuVal - MSU/Clemson
-#Updated: July 24, 2018
+# Machine Learning - Viola D - D Major
+# Clare DuVal - MSU/Clemson
+# Updated: August 23, 2019
 
 #IMPORTS
 import numpy as np
